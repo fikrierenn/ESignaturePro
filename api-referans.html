@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Referansı - E-Signature Pro</title>
+    <meta name="description" content="E-Signature Pro REST API referansı. Endpoint'ler, authentication, örnek kodlar ve test araçları.">
+    <meta name="keywords" content="e-imza API, REST API, API dokümantasyonu, endpoint'ler, authentication">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Kurumsal Renk Kartelası -->
+    <link rel="stylesheet" href="color-palette.css">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .api-card {
+            transition: all 0.3s ease;
+        }
+        .api-card:hover {
+            transform: translateY(-2px);
+        }
+        .code-block {
+            background-color: #1f2937;
+            color: #f3f4f6;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+            overflow-x: auto;
+        }
+        .method-get { background-color: #10b981; }
+        .method-post { background-color: #3b82f6; }
+        .method-put { background-color: #f59e0b; }
+        .method-delete { background-color: #ef4444; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header / Navigation -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-signature text-purple-600 text-2xl"></i>
+                    <span class="text-xl font-bold text-gray-800">E-Signature Pro</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-purple-600 transition">Ana Sayfa</a>
+                    <a href="urunler.html" class="text-gray-600 hover:text-purple-600 transition">Ürünler</a>
+                    <a href="hakkimizda.html" class="text-gray-600 hover:text-purple-600 transition">Hakkımızda</a>
+                    <a href="cozumler.html" class="text-gray-600 hover:text-purple-600 transition">Çözümler</a>
+                    <a href="sss.html" class="text-gray-600 hover:text-purple-600 transition">SSS</a>
+                    <a href="iletisim.html" class="text-gray-600 hover:text-purple-600 transition">İletişim</a>
+                </div>
+                
+                <!-- CTA Button -->
+                <div class="hidden md:block">
+                    <button onclick="openDemoModal()" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition">
+                        Demo Talep Et
+                    </button>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-600">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Navigation -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t">
+                <div class="flex flex-col space-y-4 pt-4">
+                    <a href="index.html" class="text-gray-600">Ana Sayfa</a>
+                    <a href="urunler.html" class="text-gray-600">Ürünler</a>
+                    <a href="hakkimizda.html" class="text-gray-600">Hakkımızda</a>
+                    <a href="cozumler.html" class="text-gray-600">Çözümler</a>
+                    <a href="sss.html" class="text-gray-600">SSS</a>
+                    <a href="iletisim.html" class="text-gray-600">İletişim</a>
+                    <button onclick="openDemoModal()" class="bg-purple-600 text-white px-6 py-2 rounded-lg w-full">
+                        Demo Talep Et
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">
+                API Referansı
+            </h1>
+            <p class="text-xl mb-8 max-w-3xl mx-auto">
+                E-Signature Pro REST API'sini kullanarak sistemlerinizi entegre edin. 
+                Kapsamlı dokümantasyon, örnek kodlar ve test araçları.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#authentication" class="bg-white text-purple-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
+                    Authentication
+                </a>
+                <a href="#endpoints" class="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-purple-600 transition">
+                    Endpoint'ler
+                </a>
+                <a href="#examples" class="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-purple-600 transition">
+                    Örnekler
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- API Overview -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">
+                API Genel Bakış
+            </h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Base URL -->
+                <div class="api-card bg-white rounded-lg shadow-lg p-6 border border-gray-200">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-globe text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800 text-center">Base URL</h3>
+                    <div class="code-block text-center">
+                        https://api.e-signature-pro.com/v1
+                    </div>
+                    <p class="text-gray-600 text-sm mt-4 text-center">
+                        Tüm API istekleri bu base URL üzerinden yapılır
+                    </p>
+                </div>
+
+                <!-- Authentication -->
+                <div class="api-card bg-white rounded-lg shadow-lg p-6 border border-gray-200">
+                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-key text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800 text-center">Authentication</h3>
+                    <div class="code-block text-center">
+                        Bearer YOUR_API_KEY
+                    </div>
+                    <p class="text-gray-600 text-sm mt-4 text-center">
+                        API anahtarınızı Authorization header'ında gönderin
+                    </p>
+                </div>
+
+                <!-- Content Type -->
+                <div class="api-card bg-white rounded-lg shadow-lg p-6 border border-gray-200">
+                    <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-file-code text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800 text-center">Content Type</h3>
+                    <div class="code-block text-center">
+                        application/json
+                    </div>
+                    <p class="text-gray-600 text-sm mt-4 text-center">
+                        Tüm istekler JSON formatında gönderilir
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Authentication Section -->
+    <section id="authentication" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">
+                Authentication
+            </h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white rounded-lg shadow-lg p-8">
+                    <h3 class="text-2xl font-semibold mb-6 text-gray-800">API Anahtarı Oluşturma</h3>
+                    <p class="text-gray-600 mb-6">
+                        E-Signature Pro API'sini kullanmak için önce bir API anahtarı oluşturmanız gerekiyor. 
+                        Bu anahtar, tüm API isteklerinizde kullanılacak.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="text-lg font-semibold mb-3 text-gray-800">1. API Anahtarı Alma</h4>
+                            <div class="code-block">
+                                <span class="text-green-400">GET</span> /api/v1/keys<br>
+                                <span class="text-gray-400">Authorization:</span> Bearer YOUR_TOKEN<br><br>
+                                <span class="text-gray-400">Response:</span><br>
+                                {<br>
+                                &nbsp;&nbsp;"api_key": "sk_live_abc123...",<br>
+                                &nbsp;&nbsp;"secret_key": "sk_live_xyz789...",<br>
+                                &nbsp;&nbsp;"created_at": "2024-01-15T10:30:00Z"<br>
+                                }
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="text-lg font-semibold mb-3 text-gray-800">2. API Anahtarını Kullanma</h4>
+                            <div class="code-block">
+                                <span class="text-blue-400">POST</span> /api/v1/signatures<br>
+                                <span class="text-gray-400">Authorization:</span> Bearer sk_live_abc123...<br>
+                                <span class="text-gray-400">Content-Type:</span> application/json<br><br>
+                                {<br>
+                                &nbsp;&nbsp;"document_id": "doc_123",<br>
+                                &nbsp;&nbsp;"signer_email": "signer@example.com"<br>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                            <h4 class="text-lg font-semibold mb-2 text-yellow-800">
+                                <i class="fas fa-exclamation-triangle mr-2"></i>Güvenlik Uyarısı
+                            </h4>
+                            <p class="text-yellow-700 text-sm">
+                                API anahtarınızı güvenli tutun ve asla public kodlarda paylaşmayın. 
+                                Anahtarınızı kaybederseniz hemen yeni bir anahtar oluşturun.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Endpoints Section -->
+    <section id="endpoints" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">
+                API Endpoint'leri
+            </h2>
+            <div class="space-y-8">
+                <!-- Documents Endpoints -->
+                <div class="bg-white rounded-lg shadow-lg p-6 border border-gray-200">
+                    <h3 class="text-2xl font-semibold mb-6 text-gray-800">Doküman İşlemleri</h3>
+                    
+                    <div class="space-y-6">
+                        <!-- Upload Document -->
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="flex items-center mb-4">
+                                <span class="method-post text-white px-3 py-1 rounded text-sm font-semibold mr-3">POST</span>
+                                <span class="text-lg font-semibold text-gray-800">/api/v1/documents</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">Yeni bir doküman yükleyin</p>
+                            <div class="code-block">
+                                <span class="text-blue-400">POST</span> /api/v1/documents<br>
+                                <span class="text-gray-400">Authorization:</span> Bearer YOUR_API_KEY<br><br>
+                                {<br>
+                                &nbsp;&nbsp;"file": "base64_encoded_file",<br>
+                                &nbsp;&nbsp;"filename": "contract.pdf",<br>
+                                &nbsp;&nbsp;"title": "İş Sözleşmesi"<br>
+                                }
+                            </div>
+                        </div>
+
+                        <!-- Get Document -->
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="flex items-center mb-4">
+                                <span class="method-get text-white px-3 py-1 rounded text-sm font-semibold mr-3">GET</span>
+                                <span class="text-lg font-semibold text-gray-800">/api/v1/documents/{id}</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">Doküman detaylarını alın</p>
+                            <div class="code-block">
+                                <span class="text-green-400">GET</span> /api/v1/documents/doc_123<br>
+                                <span class="text-gray-400">Authorization:</span> Bearer YOUR_API_KEY
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Signatures Endpoints -->
+                <div class="bg-white rounded-lg shadow-lg p-6 border border-gray-200">
+                    <h3 class="text-2xl font-semibold mb-6 text-gray-800">İmza İşlemleri</h3>
+                    
+                    <div class="space-y-6">
+                        <!-- Create Signature Request -->
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="flex items-center mb-4">
+                                <span class="method-post text-white px-3 py-1 rounded text-sm font-semibold mr-3">POST</span>
+                                <span class="text-lg font-semibold text-gray-800">/api/v1/signatures</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">Yeni bir imza talebi oluşturun</p>
+                            <div class="code-block">
+                                <span class="text-blue-400">POST</span> /api/v1/signatures<br>
+                                <span class="text-gray-400">Authorization:</span> Bearer YOUR_API_KEY<br><br>
+                                {<br>
+                                &nbsp;&nbsp;"document_id": "doc_123",<br>
+                                &nbsp;&nbsp;"signers": [<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;{<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"email": "signer1@example.com",<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "Ahmet Yılmaz"<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                                &nbsp;&nbsp;],<br>
+                                &nbsp;&nbsp;"message": "Lütfen bu belgeyi imzalayın"<br>
+                                }
+                            </div>
+                        </div>
+
+                        <!-- Get Signature Status -->
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="flex items-center mb-4">
+                                <span class="method-get text-white px-3 py-1 rounded text-sm font-semibold mr-3">GET</span>
+                                <span class="text-lg font-semibold text-gray-800">/api/v1/signatures/{id}</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">İmza durumunu kontrol edin</p>
+                            <div class="code-block">
+                                <span class="text-green-400">GET</span> /api/v1/signatures/sig_456<br>
+                                <span class="text-gray-400">Authorization:</span> Bearer YOUR_API_KEY
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Users Endpoints -->
+                <div class="bg-white rounded-lg shadow-lg p-6 border border-gray-200">
+                    <h3 class="text-2xl font-semibold mb-6 text-gray-800">Kullanıcı İşlemleri</h3>
+                    
+                    <div class="space-y-6">
+                        <!-- Get User Profile -->
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="flex items-center mb-4">
+                                <span class="method-get text-white px-3 py-1 rounded text-sm font-semibold mr-3">GET</span>
+                                <span class="text-lg font-semibold text-gray-800">/api/v1/users/me</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">Kullanıcı profilini alın</p>
+                            <div class="code-block">
+                                <span class="text-green-400">GET</span> /api/v1/users/me<br>
+                                <span class="text-gray-400">Authorization:</span> Bearer YOUR_API_KEY
+                            </div>
+                        </div>
+
+                        <!-- Update User Profile -->
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="flex items-center mb-4">
+                                <span class="method-put text-white px-3 py-1 rounded text-sm font-semibold mr-3">PUT</span>
+                                <span class="text-lg font-semibold text-gray-800">/api/v1/users/me</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">Kullanıcı profilini güncelleyin</p>
+                            <div class="code-block">
+                                <span class="text-orange-400">PUT</span> /api/v1/users/me<br>
+                                <span class="text-gray-400">Authorization:</span> Bearer YOUR_API_KEY<br><br>
+                                {<br>
+                                &nbsp;&nbsp;"name": "Yeni İsim",<br>
+                                &nbsp;&nbsp;"company": "Yeni Şirket"<br>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Code Examples Section -->
+    <section id="examples" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">
+                Kod Örnekleri
+            </h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- JavaScript Example -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">JavaScript</h3>
+                    <div class="code-block">
+                        <span class="text-blue-400">const</span> apiKey = <span class="text-green-400">'sk_live_abc123...'</span>;<br><br>
+                        <span class="text-blue-400">async function</span> createSignature() {<br>
+                        &nbsp;&nbsp;<span class="text-blue-400">const</span> response = <span class="text-blue-400">await</span> fetch(<span class="text-green-400">'https://api.e-signature-pro.com/v1/signatures'</span>, {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;method: <span class="text-green-400">'POST'</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;headers: {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">'Authorization'</span>: <span class="text-green-400">`Bearer ${apiKey}`</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">'Content-Type'</span>: <span class="text-green-400">'application/json'</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;},<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;body: JSON.stringify({<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document_id: <span class="text-green-400">'doc_123'</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;signer_email: <span class="text-green-400">'signer@example.com'</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;})<br>
+                        &nbsp;&nbsp;});<br><br>
+                        &nbsp;&nbsp;<span class="text-blue-400">const</span> data = <span class="text-blue-400">await</span> response.json();<br>
+                        &nbsp;&nbsp;console.log(data);<br>
+                        }
+                    </div>
+                </div>
+
+                <!-- Python Example -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">Python</h3>
+                    <div class="code-block">
+                        <span class="text-blue-400">import</span> requests<br><br>
+                        api_key = <span class="text-green-400">'sk_live_abc123...'</span><br>
+                        headers = {<br>
+                        &nbsp;&nbsp;<span class="text-green-400">'Authorization'</span>: <span class="text-green-400">f'Bearer {api_key}'</span>,<br>
+                        &nbsp;&nbsp;<span class="text-green-400">'Content-Type'</span>: <span class="text-green-400">'application/json'</span><br>
+                        }<br><br>
+                        data = {<br>
+                        &nbsp;&nbsp;<span class="text-green-400">'document_id'</span>: <span class="text-green-400">'doc_123'</span>,<br>
+                        &nbsp;&nbsp;<span class="text-green-400">'signer_email'</span>: <span class="text-green-400">'signer@example.com'</span><br>
+                        }<br><br>
+                        response = requests.post(<br>
+                        &nbsp;&nbsp;<span class="text-green-400">'https://api.e-signature-pro.com/v1/signatures'</span>,<br>
+                        &nbsp;&nbsp;headers=headers,<br>
+                        &nbsp;&nbsp;json=data<br>
+                        )<br><br>
+                        print(response.json())
+                    </div>
+                </div>
+
+                <!-- PHP Example -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">PHP</h3>
+                    <div class="code-block">
+                        <span class="text-blue-400">$</span>api_key = <span class="text-green-400">'sk_live_abc123...'</span>;<br><br>
+                        <span class="text-blue-400">$</span>data = [<br>
+                        &nbsp;&nbsp;<span class="text-green-400">'document_id'</span> => <span class="text-green-400">'doc_123'</span>,<br>
+                        &nbsp;&nbsp;<span class="text-green-400">'signer_email'</span> => <span class="text-green-400">'signer@example.com'</span><br>
+                        ];<br><br>
+                        <span class="text-blue-400">$</span>ch = curl_init();<br>
+                        curl_setopt(<span class="text-blue-400">$</span>ch, CURLOPT_URL, <span class="text-green-400">'https://api.e-signature-pro.com/v1/signatures'</span>);<br>
+                        curl_setopt(<span class="text-blue-400">$</span>ch, CURLOPT_POST, <span class="text-orange-400">true</span>);<br>
+                        curl_setopt(<span class="text-blue-400">$</span>ch, CURLOPT_POSTFIELDS, json_encode(<span class="text-blue-400">$</span>data));<br>
+                        curl_setopt(<span class="text-blue-400">$</span>ch, CURLOPT_HTTPHEADER, [<br>
+                        &nbsp;&nbsp;<span class="text-green-400">'Authorization: Bearer ' . $api_key</span>,<br>
+                        &nbsp;&nbsp;<span class="text-green-400">'Content-Type: application/json'</span><br>
+                        ]);<br><br>
+                        <span class="text-blue-400">$</span>response = curl_exec(<span class="text-blue-400">$</span>ch);<br>
+                        curl_close(<span class="text-blue-400">$</span>ch);<br><br>
+                        echo <span class="text-blue-400">$</span>response;
+                    </div>
+                </div>
+
+                <!-- cURL Example -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">cURL</h3>
+                    <div class="code-block">
+                        curl -X POST \<br>
+                        &nbsp;&nbsp;-H <span class="text-green-400">"Authorization: Bearer sk_live_abc123..."</span> \<br>
+                        &nbsp;&nbsp;-H <span class="text-green-400">"Content-Type: application/json"</span> \<br>
+                        &nbsp;&nbsp;-d <span class="text-green-400">'{<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;"document_id": "doc_123",<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;"signer_email": "signer@example.com"<br>
+                        &nbsp;&nbsp;}'</span> \<br>
+                        &nbsp;&nbsp;https://api.e-signature-pro.com/v1/signatures
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SDK Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">
+                SDK'lar ve Kütüphaneler
+            </h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- JavaScript SDK -->
+                <div class="bg-white rounded-lg shadow-lg p-6 border border-gray-200">
+                    <div class="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fab fa-js text-yellow-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800 text-center">JavaScript SDK</h3>
+                    <p class="text-gray-600 text-sm mb-4 text-center">
+                        Node.js ve browser için
+                    </p>
+                    <div class="space-y-2 text-sm text-gray-600 mb-4">
+                        <p>• npm install @esignature-pro/js</p>
+                        <p>• TypeScript desteği</p>
+                        <p>• Promise tabanlı</p>
+                    </div>
+                    <a href="#" class="w-full bg-yellow-600 text-white py-2 px-4 rounded-lg hover:bg-yellow-700 transition block text-center">
+                        İndir
+                    </a>
+                </div>
+
+                <!-- Python SDK -->
+                <div class="bg-white rounded-lg shadow-lg p-6 border border-gray-200">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fab fa-python text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800 text-center">Python SDK</h3>
+                    <p class="text-gray-600 text-sm mb-4 text-center">
+                        Python 3.7+ için
+                    </p>
+                    <div class="space-y-2 text-sm text-gray-600 mb-4">
+                        <p>• pip install esignature-pro</p>
+                        <p>• Async desteği</p>
+                        <p>• Django/Flask entegrasyonu</p>
+                    </div>
+                    <a href="#" class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition block text-center">
+                        İndir
+                    </a>
+                </div>
+
+                <!-- PHP SDK -->
+                <div class="bg-white rounded-lg shadow-lg p-6 border border-gray-200">
+                    <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fab fa-php text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800 text-center">PHP SDK</h3>
+                    <p class="text-gray-600 text-sm mb-4 text-center">
+                        PHP 7.4+ için
+                    </p>
+                    <div class="space-y-2 text-sm text-gray-600 mb-4">
+                        <p>• composer require esignature-pro/php</p>
+                        <p>• Laravel entegrasyonu</p>
+                        <p>• PSR standartları</p>
+                    </div>
+                    <a href="#" class="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition block text-center">
+                        İndir
+                    </a>
+                </div>
+
+                <!-- Java SDK -->
+                <div class="bg-white rounded-lg shadow-lg p-6 border border-gray-200">
+                    <div class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fab fa-java text-red-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800 text-center">Java SDK</h3>
+                    <p class="text-gray-600 text-sm mb-4 text-center">
+                        Java 8+ için
+                    </p>
+                    <div class="space-y-2 text-sm text-gray-600 mb-4">
+                        <p>• Maven/Gradle desteği</p>
+                        <p>• Spring Boot entegrasyonu</p>
+                        <p>• Android desteği</p>
+                    </div>
+                    <a href="#" class="w-full bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 transition block text-center">
+                        İndir
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-purple-600 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4">
+                API'yi Test Edin
+            </h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">
+                API'mizi test etmek için sandbox ortamını kullanın. 
+                Gerçek verilerinizi etkilemeden API'yi deneyebilirsiniz.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#" class="bg-white text-purple-600 px-8 py-3 rounded-lg font-semibold text-lg hover:bg-gray-100 transition">
+                    Sandbox'a Git
+                </a>
+                <button onclick="openDemoModal()" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold text-lg hover:bg-white hover:text-purple-600 transition">
+                    Demo Talep Et
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-signature text-purple-400 text-xl"></i>
+                        <span class="text-xl font-bold">E-Signature Pro</span>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        Türkiye'nin dijital imza çözümleri lideri. E-imza ile güvenli dijital dönüşüm.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Hızlı Linkler</h3>
+                    <ul class="space-y-2">
+                        <li><a href="urunler.html" class="text-gray-300 hover:text-white">Ürünler</a></li>
+                        <li><a href="cozumler.html" class="text-gray-300 hover:text-white">Çözümler</a></li>
+                        <li><a href="hakkimizda.html" class="text-gray-300 hover:text-white">Hakkımızda</a></li>
+                        <li><a href="iletisim.html" class="text-gray-300 hover:text-white">İletişim</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Support -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Destek</h3>
+                    <ul class="space-y-2">
+                        <li><a href="sss.html" class="text-gray-300 hover:text-white">SSS</a></li>
+                        <li><a href="teknik-destek.html" class="text-gray-300 hover:text-white">Teknik Destek</a></li>
+                        <li><a href="dokumantasyon.html" class="text-gray-300 hover:text-white">Dokümantasyon</a></li>
+                        <li><a href="api-referans.html" class="text-gray-300 hover:text-white">API Referansı</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">İletişim</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><i class="fas fa-phone mr-2"></i>+90 224 123 45 67</li>
+                        <li><i class="fas fa-envelope mr-2"></i>info@e-signature-pro.com</li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i>Bursa, Türkiye</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
+                <p>&copy; 2024 E-Signature Pro. Tüm hakları saklıdır. | <a href="#" class="hover:text-white">Gizlilik Politikası</a> | <a href="#" class="hover:text-white">Çerez Politikası</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Demo Modal -->
+    <div id="demo-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg max-w-md w-full p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-semibold">Demo Talep Formu</h3>
+                    <button onclick="closeDemoModal()" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <form id="demo-form" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Ad Soyad *</label>
+                        <input type="text" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Kurum Adı *</label>
+                        <input type="text" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Telefon *</label>
+                        <input type="tel" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">E-Posta *</label>
+                        <input type="email" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">İlgilendiğiniz Ürün</label>
+                        <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            <option>E-Bordro Pro</option>
+                            <option>E-Contract Pro</option>
+                            <option>E-Approval Pro</option>
+                            <option>Genel Bilgi</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Mesaj</label>
+                        <textarea rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Demo talebiniz hakkında ek bilgiler..."></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-700 transition">
+                        Demo Talep Et
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Demo modal functions
+        function openDemoModal() {
+            document.getElementById('demo-modal').classList.remove('hidden');
+        }
+
+        function closeDemoModal() {
+            document.getElementById('demo-modal').classList.add('hidden');
+        }
+
+        // Demo form submission
+        document.getElementById('demo-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Demo talebiniz başarıyla alındı! En kısa sürede sizinle iletişime geçeceğiz.');
+            closeDemoModal();
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('demo-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeDemoModal();
+            }
+        });
+    </script>
+</body>
+</html>
