@@ -1,0 +1,177 @@
+/* 
+E-Bordro Kurumsal Renk Kartelası
+Mor Tema - Profesyonel ve Modern Görünüm
+*/
+
+:root {
+    /* Ana Mor Renkler */
+    --primary-purple: #7c3aed;          /* Ana mor - CTA butonları, vurgular */
+    --primary-purple-dark: #6d28d9;     /* Koyu mor - Hover durumları */
+    --primary-purple-light: #a78bfa;    /* Açık mor - İkincil vurgular */
+    --primary-purple-lighter: #c4b5fd;  /* Çok açık mor - Arka planlar */
+    
+    /* Gradient Mor Renkler */
+    --gradient-purple-start: #8b5cf6;   /* Gradient başlangıç */
+    --gradient-purple-end: #7c3aed;     /* Gradient bitiş */
+    --gradient-purple-light: #a78bfa;   /* Açık gradient */
+    --gradient-purple-dark: #6d28d9;    /* Koyu gradient */
+    
+    /* Nötr Renkler */
+    --white: #ffffff;                    /* Beyaz */
+    --gray-50: #f9fafb;                 /* Çok açık gri - Arka plan */
+    --gray-100: #f3f4f6;                /* Açık gri - Kart arka planları */
+    --gray-200: #e5e7eb;                /* Orta açık gri - Kenarlıklar */
+    --gray-300: #d1d5db;                /* Orta gri - Form kenarlıkları */
+    --gray-400: #9ca3af;                /* Orta koyu gri - Placeholder */
+    --gray-500: #6b7280;                /* Koyu gri - İkincil metin */
+    --gray-600: #4b5563;                /* Daha koyu gri - Ana metin */
+    --gray-700: #374151;                /* Çok koyu gri - Başlıklar */
+    --gray-800: #1f2937;                /* En koyu gri - Footer */
+    --gray-900: #111827;                /* Siyah - Logo */
+    
+    /* Vurgu Renkleri */
+    --accent-green: #10b981;            /* Yeşil - Başarı, onay */
+    --accent-green-light: #34d399;      /* Açık yeşil */
+    --accent-orange: #f59e0b;           /* Turuncu - Uyarı */
+    --accent-red: #ef4444;              /* Kırmızı - Hata */
+    --accent-blue: #3b82f6;             /* Mavi - Bilgi */
+    
+    /* Özel Efektler */
+    --shadow-light: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --shadow-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-large: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    
+    /* Gradient Tanımları */
+    --hero-gradient: linear-gradient(135deg, var(--gradient-purple-start) 0%, var(--gradient-purple-end) 100%);
+    --card-gradient: linear-gradient(135deg, var(--primary-purple-light) 0%, var(--primary-purple) 100%);
+    --button-gradient: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-purple-dark) 100%);
+}
+
+/* Genel Sınıf Tanımları */
+.bg-primary { background-color: var(--primary-purple); }
+.bg-primary-dark { background-color: var(--primary-purple-dark); }
+.bg-primary-light { background-color: var(--primary-purple-light); }
+.bg-primary-lighter { background-color: var(--primary-purple-lighter); }
+
+.text-primary { color: var(--primary-purple); }
+.text-primary-dark { color: var(--primary-purple-dark); }
+.text-primary-light { color: var(--primary-purple-light); }
+
+.border-primary { border-color: var(--primary-purple); }
+.border-primary-light { border-color: var(--primary-purple-light); }
+
+/* Gradient Sınıfları */
+.bg-hero-gradient { background: var(--hero-gradient); }
+.bg-card-gradient { background: var(--card-gradient); }
+.bg-button-gradient { background: var(--button-gradient); }
+
+/* Hover Efektleri */
+.hover-primary:hover { background-color: var(--primary-purple-dark); }
+.hover-primary-light:hover { background-color: var(--primary-purple-light); }
+
+/* Focus Efektleri */
+.focus-ring:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+/* Animasyon Sınıfları */
+.transition-all { transition: all 0.3s ease; }
+.transition-colors { transition: color 0.3s ease, background-color 0.3s ease; }
+.transition-transform { transition: transform 0.3s ease; }
+
+/* Özel Bileşen Sınıfları */
+.feature-card {
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-light);
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-large);
+}
+
+.cta-button {
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    transform: scale(1.05);
+}
+
+/* Form Elemanları */
+.form-input:focus {
+    border-color: var(--primary-purple);
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+/* Buton Varyasyonları */
+.btn-primary {
+    background: var(--button-gradient);
+    color: var(--white);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: var(--primary-purple-dark);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-medium);
+}
+
+.btn-outline {
+    border: 2px solid var(--primary-purple);
+    color: var(--primary-purple);
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+    background: var(--primary-purple);
+    color: var(--white);
+}
+
+/* Kart Sınıfları */
+.card {
+    background: var(--white);
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow-light);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-medium);
+}
+
+/* İkon Renkleri */
+.icon-primary { color: var(--primary-purple); }
+.icon-success { color: var(--accent-green); }
+.icon-warning { color: var(--accent-orange); }
+.icon-error { color: var(--accent-red); }
+.icon-info { color: var(--accent-blue); }
+
+/* Metin Renkleri */
+.text-muted { color: var(--gray-500); }
+.text-light { color: var(--gray-400); }
+.text-dark { color: var(--gray-700); }
+
+/* Arka Plan Renkleri */
+.bg-muted { background-color: var(--gray-50); }
+.bg-light { background-color: var(--gray-100); }
+.bg-dark { background-color: var(--gray-800); }
+
+/* Responsive Renk Ayarları */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --white: #1f2937;
+        --gray-50: #111827;
+        --gray-100: #1f2937;
+        --gray-200: #374151;
+        --gray-300: #4b5563;
+        --gray-400: #6b7280;
+        --gray-500: #9ca3af;
+        --gray-600: #d1d5db;
+        --gray-700: #e5e7eb;
+        --gray-800: #f3f4f6;
+        --gray-900: #ffffff;
+    }
+}

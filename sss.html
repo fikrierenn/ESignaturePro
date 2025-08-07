@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSS - E-Signature Pro</title>
+    <meta name="description" content="E-imza ve dijital imza çözümleri hakkında sık sorulan sorular. E-Signature Pro SSS sayfası.">
+    <meta name="keywords" content="e-imza sss, dijital imza soruları, e-imza nedir, e-imza geçerli mi">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Kurumsal Renk Kartelası -->
+    <link rel="stylesheet" href="color-palette.css">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .faq-item {
+            transition: all 0.3s ease;
+        }
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .faq-content.active {
+            max-height: 500px;
+        }
+        .faq-toggle {
+            transition: transform 0.3s ease;
+        }
+        .faq-toggle.active {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header / Navigation -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-signature text-purple-600 text-2xl"></i>
+                    <span class="text-xl font-bold text-gray-800">E-Signature Pro</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-purple-600 transition">Ana Sayfa</a>
+                    <a href="urunler.html" class="text-gray-600 hover:text-purple-600 transition">Ürünler</a>
+                    <a href="hakkimizda.html" class="text-gray-600 hover:text-purple-600 transition">Hakkımızda</a>
+                    <a href="cozumler.html" class="text-gray-600 hover:text-purple-600 transition">Çözümler</a>
+                    <a href="sss.html" class="text-purple-600 font-semibold">SSS</a>
+                    <a href="iletisim.html" class="text-gray-600 hover:text-purple-600 transition">İletişim</a>
+                </div>
+                
+                <!-- CTA Button -->
+                <div class="hidden md:block">
+                    <button onclick="openDemoModal()" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition">
+                        Demo Talep Et
+                    </button>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-600">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Navigation -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t">
+                <div class="flex flex-col space-y-4 pt-4">
+                    <a href="index.html" class="text-gray-600">Ana Sayfa</a>
+                    <a href="urunler.html" class="text-gray-600">Ürünler</a>
+                    <a href="hakkimizda.html" class="text-gray-600">Hakkımızda</a>
+                    <a href="cozumler.html" class="text-gray-600">Çözümler</a>
+                    <a href="sss.html" class="text-purple-600 font-semibold">SSS</a>
+                    <a href="iletisim.html" class="text-gray-600">İletişim</a>
+                    <button onclick="openDemoModal()" class="bg-purple-600 text-white px-6 py-2 rounded-lg w-full">
+                        Demo Talep Et
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">
+                Sık Sorulan Sorular
+            </h1>
+            <p class="text-xl mb-8 max-w-3xl mx-auto">
+                E-imza ve dijital imza çözümlerimiz hakkında merak ettiğiniz her şey. 
+                Sorularınızın cevaplarını burada bulabilirsiniz.
+            </p>
+        </div>
+    </section>
+
+    <!-- FAQ Categories -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <!-- E-imza Genel -->
+                <div class="text-center p-6 bg-purple-50 rounded-lg">
+                    <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-signature text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">E-imza Genel</h3>
+                    <p class="text-gray-600 text-sm">
+                        E-imza nedir, nasıl çalışır ve yasal geçerliliği hakkında temel bilgiler.
+                    </p>
+                </div>
+
+                <!-- Teknik Konular -->
+                <div class="text-center p-6 bg-blue-50 rounded-lg">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-cogs text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">Teknik Konular</h3>
+                    <p class="text-gray-600 text-sm">
+                        Entegrasyon, güvenlik ve teknik detaylar hakkında bilgiler.
+                    </p>
+                </div>
+
+                <!-- Yasal Konular -->
+                <div class="text-center p-6 bg-green-50 rounded-lg">
+                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-gavel text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">Yasal Konular</h3>
+                    <p class="text-gray-600 text-sm">
+                        Yasal uyumluluk, KVKK ve diğer yasal gereklilikler.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <!-- E-imza Genel Sorular -->
+                <div class="mb-12">
+                    <h2 class="text-2xl font-bold mb-8 text-gray-800 flex items-center">
+                        <i class="fas fa-signature text-purple-600 mr-3"></i>
+                        E-imza Genel Sorular
+                    </h2>
+                    
+                    <div class="space-y-4">
+                        <!-- Soru 1 -->
+                        <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-200">
+                            <button class="faq-question w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition">
+                                <span class="font-semibold text-gray-800">E-imza nedir ve nasıl çalışır?</span>
+                                <i class="fas fa-chevron-down faq-toggle text-purple-600"></i>
+                            </button>
+                            <div class="faq-content px-6 pb-4">
+                                <p class="text-gray-600 mb-4">
+                                    E-imza (elektronik imza), geleneksel el yazısı imzanın dijital karşılığıdır. 
+                                    Matematiksel algoritmalar kullanılarak oluşturulan benzersiz bir dijital kod ile 
+                                    belgelerin kimlik doğrulaması ve bütünlüğü sağlanır.
+                                </p>
+                                <p class="text-gray-600">
+                                    E-imza, 5070 Sayılı Elektronik İmza Kanunu'na göre yasal olarak geçerlidir ve 
+                                    el yazısı imza ile aynı hukuki değere sahiptir.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Soru 2 -->
+                        <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-200">
+                            <button class="faq-question w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition">
+                                <span class="font-semibold text-gray-800">E-imzalı belgeler yasal olarak geçerli mi?</span>
+                                <i class="fas fa-chevron-down faq-toggle text-purple-600"></i>
+                            </button>
+                            <div class="faq-content px-6 pb-4">
+                                <p class="text-gray-600 mb-4">
+                                    Evet, e-imzalı belgeler Türkiye'de tamamen yasal ve geçerlidir. 
+                                    5070 Sayılı Elektronik İmza Kanunu'na göre:
+                                </p>
+                                <ul class="text-gray-600 space-y-2 ml-4">
+                                    <li>• E-imza, el yazısı imza ile aynı hukuki değere sahiptir</li>
+                                    <li>• Mahkemelerde delil olarak kullanılabilir</li>
+                                    <li>• Resmi kurumlar tarafından kabul edilir</li>
+                                    <li>• Uluslararası standartlara uyumludur</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Soru 3 -->
+                        <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-200">
+                            <button class="faq-question w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition">
+                                <span class="font-semibold text-gray-800">Zaman damgası ne işe yarar?</span>
+                                <i class="fas fa-chevron-down faq-toggle text-purple-600"></i>
+                            </button>
+                            <div class="faq-content px-6 pb-4">
+                                <p class="text-gray-600 mb-4">
+                                    Zaman damgası, e-imzalı belgenin hangi tarih ve saatte imzalandığını 
+                                    doğrulayan dijital bir sertifikadır. Bu sayede:
+                                </p>
+                                <ul class="text-gray-600 space-y-2 ml-4">
+                                    <li>• İmza zamanı kesin olarak belirlenir</li>
+                                    <li>• Belge değiştirilme tarihi tespit edilir</li>
+                                    <li>• Yasal uyuşmazlıklarda zaman kanıtı sağlar</li>
+                                    <li>• Güvenlik ve şeffaflık artırılır</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Soru 4 -->
+                        <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-200">
+                            <button class="faq-question w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition">
+                                <span class="font-semibold text-gray-800">Kendi e-imzamla imzalayabilir miyim?</span>
+                                <i class="fas fa-chevron-down faq-toggle text-purple-600"></i>
+                            </button>
+                            <div class="faq-content px-6 pb-4">
+                                <p class="text-gray-600 mb-4">
+                                    E-Signature Pro platformumuz, kendi e-imzanızı kullanmanıza tam destek verir. 
+                                    Sistemimiz şu e-imza türlerini destekler:
+                                </p>
+                                <ul class="text-gray-600 space-y-2 ml-4">
+                                    <li>• Nitelikli Elektronik İmza (NİE)</li>
+                                    <li>• Mobil İmza</li>
+                                    <li>• T.C. Kimlik Kartı ile İmza</li>
+                                    <li>• Kurumsal E-imza Sertifikaları</li>
+                                </ul>
+                                <p class="text-gray-600 mt-4">
+                                    Kendi e-imzanızı sisteme entegre edebilir ve tüm belgelerinizi 
+                                    kendi sertifikanızla imzalayabilirsiniz.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Teknik Sorular -->
+                <div class="mb-12">
+                    <h2 class="text-2xl font-bold mb-8 text-gray-800 flex items-center">
+                        <i class="fas fa-cogs text-blue-600 mr-3"></i>
+                        Teknik Sorular
+                    </h2>
+                    
+                    <div class="space-y-4">
+                        <!-- Soru 5 -->
+                        <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-200">
+                            <button class="faq-question w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition">
+                                <span class="font-semibold text-gray-800">Mevcut sistemlerimizle entegrasyon nasıl yapılır?</span>
+                                <i class="fas fa-chevron-down faq-toggle text-purple-600"></i>
+                            </button>
+                            <div class="faq-content px-6 pb-4">
+                                <p class="text-gray-600 mb-4">
+                                    E-Signature Pro, mevcut sistemlerinizle kolayca entegre olur:
+                                </p>
+                                <ul class="text-gray-600 space-y-2 ml-4">
+                                    <li>• REST API desteği ile hızlı entegrasyon</li>
+                                    <li>• Webhook desteği ile gerçek zamanlı bildirimler</li>
+                                    <li>• SDK'lar ile kolay geliştirme</li>
+                                    <li>• Mevcut ERP/CRM sistemleri ile uyumluluk</li>
+                                    <li>• Özel entegrasyon desteği</li>
+                                </ul>
+                                <p class="text-gray-600 mt-4">
+                                    Teknik ekibimiz, entegrasyon sürecinde size tam destek sağlar.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Soru 6 -->
+                        <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-200">
+                            <button class="faq-question w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition">
+                                <span class="font-semibold text-gray-800">Güvenlik önlemleri nelerdir?</span>
+                                <i class="fas fa-chevron-down faq-toggle text-purple-600"></i>
+                            </button>
+                            <div class="faq-content px-6 pb-4">
+                                <p class="text-gray-600 mb-4">
+                                    E-Signature Pro, en yüksek güvenlik standartlarını kullanır:
+                                </p>
+                                <ul class="text-gray-600 space-y-2 ml-4">
+                                    <li>• 256-bit SSL şifreleme</li>
+                                    <li>• ISO 27001 güvenlik sertifikası</li>
+                                    <li>• KVKK uyumlu veri işleme</li>
+                                    <li>• Düzenli güvenlik denetimleri</li>
+                                    <li>• Yedekleme ve felaket kurtarma</li>
+                                    <li>• Çok faktörlü kimlik doğrulama</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Soru 7 -->
+                        <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-200">
+                            <button class="faq-question w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition">
+                                <span class="font-semibold text-gray-800">Mobil uygulama desteği var mı?</span>
+                                <i class="fas fa-chevron-down faq-toggle text-purple-600"></i>
+                            </button>
+                            <div class="faq-content px-6 pb-4">
+                                <p class="text-gray-600 mb-4">
+                                    Evet, E-Signature Pro mobil uygulaması ile:
+                                </p>
+                                <ul class="text-gray-600 space-y-2 ml-4">
+                                    <li>• iOS ve Android cihazlarda imzalama</li>
+                                    <li>• Mobil imza desteği</li>
+                                    <li>• Push bildirimler ile anlık bilgilendirme</li>
+                                    <li>• Offline çalışma modu</li>
+                                    <li>• Parmak izi ve yüz tanıma ile giriş</li>
+                                </ul>
+                                <p class="text-gray-600 mt-4">
+                                    Mobil uygulamamız App Store ve Google Play'den indirilebilir.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Yasal Sorular -->
+                <div class="mb-12">
+                    <h2 class="text-2xl font-bold mb-8 text-gray-800 flex items-center">
+                        <i class="fas fa-gavel text-green-600 mr-3"></i>
+                        Yasal Sorular
+                    </h2>
+                    
+                    <div class="space-y-4">
+                        <!-- Soru 8 -->
+                        <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-200">
+                            <button class="faq-question w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition">
+                                <span class="font-semibold text-gray-800">KVKK uyumluluğu nasıl sağlanır?</span>
+                                <i class="fas fa-chevron-down faq-toggle text-purple-600"></i>
+                            </button>
+                            <div class="faq-content px-6 pb-4">
+                                <p class="text-gray-600 mb-4">
+                                    E-Signature Pro, KVKK gerekliliklerine tam uyumludur:
+                                </p>
+                                <ul class="text-gray-600 space-y-2 ml-4">
+                                    <li>• Veri minimizasyonu prensibi</li>
+                                    <li>• Amaçla sınırlı işleme</li>
+                                    <li>• Şeffaflık ve hesap verebilirlik</li>
+                                    <li>• Veri güvenliği önlemleri</li>
+                                    <li>• Veri sahibi hakları korunması</li>
+                                    <li>• Düzenli KVKK denetimleri</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Soru 9 -->
+                        <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-200">
+                            <button class="faq-question w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition">
+                                <span class="font-semibold text-gray-800">SGK ve vergi dairesi uyumluluğu nasıl?</span>
+                                <i class="fas fa-chevron-down faq-toggle text-purple-600"></i>
+                            </button>
+                            <div class="faq-content px-6 pb-4">
+                                <p class="text-gray-600 mb-4">
+                                    E-Signature Pro, resmi kurumların gereksinimlerine tam uyumludur:
+                                </p>
+                                <ul class="text-gray-600 space-y-2 ml-4">
+                                    <li>• SGK e-bildirge uyumluluğu</li>
+                                    <li>• Vergi dairesi e-defter uyumluluğu</li>
+                                    <li>• Maliye Bakanlığı standartları</li>
+                                    <li>• Resmi kurum entegrasyonları</li>
+                                    <li>• Yasal saklama süreleri</li>
+                                </ul>
+                                <p class="text-gray-600 mt-4">
+                                    Tüm belgeleriniz resmi kurumlar tarafından kabul edilir.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Soru 10 -->
+                        <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-200">
+                            <button class="faq-question w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition">
+                                <span class="font-semibold text-gray-800">Uluslararası geçerlilik var mı?</span>
+                                <i class="fas fa-chevron-down faq-toggle text-purple-600"></i>
+                            </button>
+                            <div class="faq-content px-6 pb-4">
+                                <p class="text-gray-600 mb-4">
+                                    E-Signature Pro, uluslararası standartlara uyumludur:
+                                </p>
+                                <ul class="text-gray-600 space-y-2 ml-4">
+                                    <li>• eIDAS (AB) uyumluluğu</li>
+                                    <li>• UNCITRAL Model Law uyumluluğu</li>
+                                    <li>• ISO 27001 güvenlik standardı</li>
+                                    <li>• Uluslararası e-imza standartları</li>
+                                    <li>• Çoklu ülke desteği</li>
+                                </ul>
+                                <p class="text-gray-600 mt-4">
+                                    Belgelendirilmiş e-imzalarınız uluslararası alanda da geçerlidir.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4 text-gray-800">
+                Sorunuzun Cevabını Bulamadınız mı?
+            </h2>
+            <p class="text-gray-600 mb-8 max-w-2xl mx-auto">
+                SSS sayfamızda aradığınız cevabı bulamadıysanız, uzman ekibimizle iletişime geçin. 
+                Size en kısa sürede yardımcı olacağız.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="openDemoModal()" class="bg-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-purple-700 transition">
+                    Demo Talep Et
+                </button>
+                <a href="iletisim.html" class="border-2 border-purple-600 text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-purple-600 hover:text-white transition">
+                    İletişime Geç
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-signature text-purple-400 text-xl"></i>
+                        <span class="text-xl font-bold">E-Signature Pro</span>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        Türkiye'nin dijital imza çözümleri lideri. E-imza ile güvenli dijital dönüşüm.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Hızlı Linkler</h3>
+                    <ul class="space-y-2">
+                        <li><a href="urunler.html" class="text-gray-300 hover:text-white">Ürünler</a></li>
+                        <li><a href="cozumler.html" class="text-gray-300 hover:text-white">Çözümler</a></li>
+                        <li><a href="hakkimizda.html" class="text-gray-300 hover:text-white">Hakkımızda</a></li>
+                        <li><a href="iletisim.html" class="text-gray-300 hover:text-white">İletişim</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Support -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Destek</h3>
+                    <ul class="space-y-2">
+                        <li><a href="sss.html" class="text-gray-300 hover:text-white">SSS</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Teknik Destek</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Dokümantasyon</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">API Referansı</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">İletişim</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><i class="fas fa-phone mr-2"></i>+90 224 123 45 67</li>
+                        <li><i class="fas fa-envelope mr-2"></i>info@e-signature-pro.com</li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i>Bursa, Türkiye</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
+                <p>&copy; 2024 E-Signature Pro. Tüm hakları saklıdır. | <a href="#" class="hover:text-white">Gizlilik Politikası</a> | <a href="#" class="hover:text-white">Çerez Politikası</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Demo Modal -->
+    <div id="demo-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg max-w-md w-full p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-semibold">Demo Talep Formu</h3>
+                    <button onclick="closeDemoModal()" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <form id="demo-form" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Ad Soyad *</label>
+                        <input type="text" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Kurum Adı *</label>
+                        <input type="text" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Telefon *</label>
+                        <input type="tel" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">E-Posta *</label>
+                        <input type="email" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">İlgilendiğiniz Ürün</label>
+                        <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            <option>E-Bordro Pro</option>
+                            <option>E-Contract Pro</option>
+                            <option>E-Approval Pro</option>
+                            <option>Genel Bilgi</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Mesaj</label>
+                        <textarea rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Demo talebiniz hakkında ek bilgiler..."></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-700 transition">
+                        Demo Talep Et
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // FAQ accordion functionality
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                const toggle = this.querySelector('.faq-toggle');
+                
+                // Close other open items
+                document.querySelectorAll('.faq-content').forEach(item => {
+                    if (item !== content) {
+                        item.classList.remove('active');
+                        item.previousElementSibling.querySelector('.faq-toggle').classList.remove('active');
+                    }
+                });
+                
+                // Toggle current item
+                content.classList.toggle('active');
+                toggle.classList.toggle('active');
+            });
+        });
+
+        // Demo modal functions
+        function openDemoModal() {
+            document.getElementById('demo-modal').classList.remove('hidden');
+        }
+
+        function closeDemoModal() {
+            document.getElementById('demo-modal').classList.add('hidden');
+        }
+
+        // Demo form submission
+        document.getElementById('demo-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Demo talebiniz başarıyla alındı! En kısa sürede sizinle iletişime geçeceğiz.');
+            closeDemoModal();
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('demo-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeDemoModal();
+            }
+        });
+    </script>
+</body>
+</html>

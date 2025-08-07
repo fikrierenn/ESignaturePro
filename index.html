@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Signature Pro - E-imza ile Dijital Dönüşüm</title>
+    <meta name="description" content="E-imzalı dijital çözümlerimiz ile tüm iş süreçlerinizi güvenle dijitale taşıyın. Yasal uyumlu, zaman damgalı güvenlik.">
+    <meta name="keywords" content="e-imza, dijital imza, dijital dönüşüm, İK çözümleri, zaman damgası, sözleşme yönetimi">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Kurumsal Renk Kartelası -->
+    <link rel="stylesheet" href="color-palette.css">
+    
+    <style>
+        /* Font ailesi tanımlaması */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* Özel animasyonlar ve stil düzenlemeleri */
+        .hero-gradient {
+            background: var(--hero-gradient);
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+        }
+        .cta-button {
+            transition: all 0.3s ease;
+        }
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header / Navigation -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-signature text-purple-600 text-2xl"></i>
+                    <span class="text-xl font-bold text-gray-800">E-Signature Pro</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-purple-600 font-semibold">Ana Sayfa</a>
+                    <a href="urunler.html" class="text-gray-600 hover:text-purple-600 transition">Ürünler</a>
+                    <a href="hakkimizda.html" class="text-gray-600 hover:text-purple-600 transition">Hakkımızda</a>
+                    <a href="cozumler.html" class="text-gray-600 hover:text-purple-600 transition">Çözümler</a>
+                    <a href="sss.html" class="text-gray-600 hover:text-purple-600 transition">SSS</a>
+                    <a href="iletisim.html" class="text-gray-600 hover:text-purple-600 transition">İletişim</a>
+                </div>
+                
+                <!-- CTA Button -->
+                <div class="hidden md:block">
+                    <button onclick="openDemoModal()" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition">
+                        Demo Talep Et
+                    </button>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-600">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Navigation -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t">
+                <div class="flex flex-col space-y-4 pt-4">
+                    <a href="index.html" class="text-purple-600 font-semibold">Ana Sayfa</a>
+                    <a href="urunler.html" class="text-gray-600">Ürünler</a>
+                    <a href="hakkimizda.html" class="text-gray-600">Hakkımızda</a>
+                    <a href="cozumler.html" class="text-gray-600">Çözümler</a>
+                    <a href="sss.html" class="text-gray-600">SSS</a>
+                    <a href="iletisim.html" class="text-gray-600">İletişim</a>
+                    <button onclick="openDemoModal()" class="bg-purple-600 text-white px-6 py-2 rounded-lg w-full">
+                        Demo Talep Et
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                E-imza ile Dijital Dönüşüm Başladı
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+                E-imzalı dijital çözümlerimiz ile tüm iş süreçlerinizi güvenle dijitale taşıyın.
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <button onclick="openDemoModal()" class="cta-button bg-white text-purple-600 px-8 py-3 rounded-lg font-semibold text-lg">
+                    Demo Talep Et
+                </button>
+                <a href="urunler.html" class="cta-button border-2 border-white text-white px-8 py-3 rounded-lg font-semibold text-lg hover:bg-white hover:text-purple-600">
+                    Özellikleri İncele
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">
+                Neden E-Signature Pro?
+            </h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="feature-card bg-gray-50 p-8 rounded-lg text-center shadow-lg">
+                    <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-shield-alt text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">Yasal Uyumlu</h3>
+                    <p class="text-gray-600">
+                        5070 Sayılı Kanun, KVKK ve SGK gerekliliklerine tam uyumlu e-imza çözümleri ile yasal güvenlik.
+                    </p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="feature-card bg-gray-50 p-8 rounded-lg text-center shadow-lg">
+                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-plug text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">Kolay Entegrasyon</h3>
+                    <p class="text-gray-600">
+                        Mevcut İK sistemlerinizle kolayca entegre olan API tabanlı çözümler ile hızlı geçiş.
+                    </p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="feature-card bg-gray-50 p-8 rounded-lg text-center shadow-lg">
+                    <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-clock text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">Zaman Damgalı Güvenlik</h3>
+                    <p class="text-gray-600">
+                        Almanya merkezli esing8 altyapısı ile zaman damgalı, ispat gücü yüksek e-imza hizmeti.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Preview Section -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6 text-gray-800">
+                        E-Signature Pro Nasıl Çalışır?
+                    </h2>
+                    <ul class="space-y-4 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Bordro PDF'leri otomatik olarak sisteme yüklenir</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Personel listesi ile e-imza davetleri gönderilir</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>E-imza ile güvenli imzalama süreci tamamlanır</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Zaman damgalı arşivleme ile yasal uyum sağlanır</span>
+                        </li>
+                    </ul>
+                    <div class="mt-8">
+                        <a href="urunler.html" class="bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition">
+                            Detaylı Bilgi Al
+                        </a>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <div class="bg-gray-200 h-64 rounded flex items-center justify-center">
+                        <div class="text-center text-gray-500">
+                            <i class="fas fa-desktop text-4xl mb-4"></i>
+                            <p>E-Signature Pro Ekran Görüntüsü</p>
+                            <p class="text-sm mt-2">Modern ve kullanıcı dostu arayüz</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-purple-600 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4">
+                Dijital Dönüşümünüzü Başlatın
+            </h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">
+                E-imzalı bordro çözümlerimiz ile İK süreçlerinizi dijitale taşıyın. 
+                Ücretsiz demo için hemen iletişime geçin.
+            </p>
+            <button onclick="openDemoModal()" class="bg-white text-purple-600 px-8 py-3 rounded-lg font-semibold text-lg hover:bg-gray-100 transition">
+                Ücretsiz Demo Talep Et
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-signature text-purple-400 text-xl"></i>
+                        <span class="text-xl font-bold">E-Signature Pro</span>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        Türkiye'nin dijital imza çözümleri lideri. E-imza ile güvenli dijital dönüşüm.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Hızlı Linkler</h3>
+                    <ul class="space-y-2">
+                        <li><a href="urunler.html" class="text-gray-300 hover:text-white">Ürünler</a></li>
+                        <li><a href="cozumler.html" class="text-gray-300 hover:text-white">Çözümler</a></li>
+                        <li><a href="hakkimizda.html" class="text-gray-300 hover:text-white">Hakkımızda</a></li>
+                        <li><a href="iletisim.html" class="text-gray-300 hover:text-white">İletişim</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Support -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Destek</h3>
+                    <ul class="space-y-2">
+                        <li><a href="sss.html" class="text-gray-300 hover:text-white">SSS</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Teknik Destek</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Dokümantasyon</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">API Referansı</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">İletişim</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><i class="fas fa-phone mr-2"></i>+90 224 123 45 67</li>
+                        <li><i class="fas fa-envelope mr-2"></i>info@e-bordro.com</li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i>Bursa, Türkiye</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
+                <p>&copy; 2024 E-Signature Pro. Tüm hakları saklıdır. | <a href="#" class="hover:text-white">Gizlilik Politikası</a> | <a href="#" class="hover:text-white">Çerez Politikası</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Demo Modal -->
+    <div id="demo-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg max-w-md w-full p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-semibold">Demo Talep Formu</h3>
+                    <button onclick="closeDemoModal()" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <form id="demo-form" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Ad Soyad *</label>
+                        <input type="text" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Kurum Adı *</label>
+                        <input type="text" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Telefon *</label>
+                        <input type="tel" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">E-Posta *</label>
+                        <input type="email" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Mesaj</label>
+                        <textarea rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Demo talebiniz hakkında ek bilgiler..."></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-700 transition">
+                        Demo Talep Et
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Demo modal functions
+        function openDemoModal() {
+            document.getElementById('demo-modal').classList.remove('hidden');
+        }
+
+        function closeDemoModal() {
+            document.getElementById('demo-modal').classList.add('hidden');
+        }
+
+        // Demo form submission
+        document.getElementById('demo-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Demo talebiniz başarıyla alındı! En kısa sürede sizinle iletişime geçeceğiz.');
+            closeDemoModal();
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('demo-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeDemoModal();
+            }
+        });
+    </script>
+</body>
+</html>
